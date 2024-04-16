@@ -31,5 +31,7 @@ contract Deployer_Mainnet is ExistingDeploymentParser {
         );
 
         vm.stopBroadcast();
+
+        console.log(address(eigenDAServiceManagerImplementation));
     }
 }
