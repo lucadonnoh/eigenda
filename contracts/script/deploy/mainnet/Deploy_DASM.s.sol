@@ -7,7 +7,7 @@ import "forge-std/Test.sol";
 import "forge-std/Script.sol";
 import "forge-std/StdJson.sol";
 
-contract Deployer_Mainnet is ExistingDeploymentParser {
+contract Deployer_DASM is ExistingDeploymentParser {
 
     string public existingCoreDeploymentPath  = string(bytes("./script/deploy/mainnet/mainnet_addresses.json"));
     string public existingDADeploymentPath = string(bytes("script/deploy/mainnet/mainnet_deployment_data.json"));
