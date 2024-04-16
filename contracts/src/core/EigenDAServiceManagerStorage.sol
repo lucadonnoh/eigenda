@@ -55,7 +55,7 @@ abstract contract EigenDAServiceManagerStorage is IEigenDAServiceManager {
      * these quorum numbers have respective canonical thresholds in the
      * quorumConfirmationThresholdPercentages and quorumAdversaryThresholdPercentages above.
      */
-    bytes public constant quorumNumbersRequired = hex"0001";
+    bytes public constant quorumNumbersRequired = hex"00";
 
     /// @notice The current batchId
     uint32 public batchId;
