@@ -10,7 +10,7 @@ import "forge-std/StdJson.sol";
 contract Deployer_DASM is ExistingDeploymentParser {
 
     string public existingCoreDeploymentPath  = string(bytes("./script/deploy/mainnet/mainnet_addresses.json"));
-    string public existingDADeploymentPath = string(bytes("script/deploy/mainnet/mainnet_deployment_data.json"));
+    string public existingDADeploymentPath = string(bytes("./script/deploy/mainnet/mainnet_deployment_data.json"));
 
     address registryCoordinator;
     address stakeRegistry;
@@ -19,8 +19,10 @@ contract Deployer_DASM is ExistingDeploymentParser {
 
     function run() external {
         _parseDeployedContracts(existingCoreDeploymentPath);
-        registryCoordinator = stdJson.readAddress(existingDADeploymentPath, ".addresses.registryCoordinator");
-        stakeRegistry = stdJson.readAddress(existingDADeploymentPath, ".addresses.stakeRegistry");
+
+        string memory existingDADeploymentData = vm.readFile(existingDADeploymentPath);
+        registryCoordinator = stdJson.readAddress(existingDADeploymentData, ".addresses.registryCoordinator");
+        stakeRegistry = stdJson.readAddress(existingDADeploymentData, ".addresses.stakeRegistry");
 
         vm.startBroadcast();
 
