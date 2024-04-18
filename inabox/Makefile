@@ -92,7 +92,10 @@ run-inabox:
 
 	./bin.sh start-detached
 
-stop-eigenda-services:
+stop-services:
+	./bin.sh stop-anvil
+	./bin.sh stop-graph
+	docker stop localstack-test
 	./bin.sh stop-detached
 
 

@@ -56,7 +56,7 @@ This will create a new file, e.g. `./testdata/12D-07M-2023Y-14H-41M-19S/config.y
 make run-inabox
 ```
 
-to stop the eigenda services run the following command:
+to stop all the services run the following:
 ```
 make stop-eigenda-services
 ```
