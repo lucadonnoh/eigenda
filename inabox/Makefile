@@ -74,10 +74,10 @@ run-inabox:
 	sleep 1
 
 	cd ./thegraph 
-	docker compose up > testdata/$(dt)/logs/graph-node.log 2>&1 &
+	docker-compose up > testdata/$(dt)/logs/graph-node.log 2>&1 &
 	cd ../
 
-	sleep 1
+	sleep 5
 
 	GATEWAY_LISTEN=0.0.0.0:4570 LOCALSTACK_HOST=localhost.localstack.cloud:4570 localstack start > testdata/$(dt)/logs/localstack.log 2>&1 &
 
