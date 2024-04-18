@@ -58,7 +58,7 @@ make run-inabox
 
 to stop all the services run the following:
 ```
-make stop-eigenda-services
+make stop-services
 ```
 
 #### Option 1 (simplest): 
