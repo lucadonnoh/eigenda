@@ -23,6 +23,7 @@ var (
 	localstackCmdName = "localstack"
 	expCmdName        = "exp"
 	allCmdName        = "all"
+	resourcesCmdName  = "resources"
 )
 
 func main() {
@@ -71,6 +72,11 @@ func main() {
 				Usage:  "deploy all infra, resources, contracts",
 				Action: getRunner(allCmdName),
 			},
+			{
+				Name:   resourcesCmdName,
+				Usage:  "deploy the resources for the inabox test",
+				Action: getRunner(resourcesCmdName),
+			},
 		},
 	}
 
@@ -108,6 +114,8 @@ func getRunner(command string) func(ctx *cli.Context) error {
 			config.DeployExperiment()
 		case allCmdName:
 			return all(ctx, config)
+		case resourcesCmdName:
+			return resources(ctx)
 		}
 
 		return nil
@@ -141,6 +149,10 @@ func localstack(ctx *cli.Context) error {
 	}
 
 	return nil
+}
+
+func resources(ctx *cli.Context) error {
+	return deploy.DeployResources(nil, ctx.String(localstackFlagName), metadataTableName, bucketTableName)
 }
 
 func all(ctx *cli.Context, config *deploy.Config) error {

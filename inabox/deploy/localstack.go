@@ -6,8 +6,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"path/filepath"
-	"runtime"
 	"time"
 
 	"github.com/Layr-Labs/eigenda/common/aws"
@@ -97,19 +95,19 @@ func DeployResources(pool *dockertest.Pool, localStackPort, metadataTableName, b
 		}
 	}
 
-	// exponential backoff-retry, because the application in
-	// the container might not be ready to accept connections yet
-	pool.MaxWait = 10 * time.Second
-	_, b, _, _ := runtime.Caller(0)
-	rootPath := filepath.Join(filepath.Dir(b), "../..")
-	changeDirectory(filepath.Join(rootPath, "inabox"))
-	if err := pool.Retry(func() error {
-		fmt.Println("Creating S3 bucket")
-		return execCmd("./create-s3-bucket.sh", []string{}, []string{fmt.Sprintf("AWS_URL=http://0.0.0.0:%s", localStackPort)})
-	}); err != nil {
-		fmt.Println("Could not connect to docker:", err)
-		return err
-	}
+	// // exponential backoff-retry, because the application in
+	// // the container might not be ready to accept connections yet
+	// pool.MaxWait = 10 * time.Second
+	// _, b, _, _ := runtime.Caller(0)
+	// rootPath := filepath.Join(filepath.Dir(b), "../..")
+	// changeDirectory(filepath.Join(rootPath, "inabox"))
+	// if err := pool.Retry(func() error {
+	// 	fmt.Println("Creating S3 bucket")
+	// 	return exec("./create-s3-bucket.sh", []string{}, []string{fmt.Sprintf("AWS_URL=http://localhost:%s", localStackPort)})
+	// }); err != nil {
+	// 	fmt.Println("Could not connect to docker:", err)
+	// 	return err
+	// }
 
 	cfg := aws.ClientConfig{
 		Region:          "us-east-1",

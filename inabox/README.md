@@ -11,7 +11,7 @@ Notice: The scripts for setting up a local geth chain are currently broken. The 
 - Ensure foundry is installed (comes with `anvil` which we use as a test chain and `forge` which we use for deployment scripting):
     ```
     $ curl -L https://foundry.paradigm.xyz | bash
-    $ foundryup
+    $ foundryup -v nightly-293fad73670b7b59ca901c7f2105bf7a29165a90
     ```
 - Localstack CLI is installed (simulates AWS stack on local machine; we also provide instructions for running localstack from docker without the CLI):
     ```
@@ -43,7 +43,7 @@ $ make build
 Create a new configuration file:
 ```
 cd inabox
-make new-anvil
+make new-anvil-nochurner 
 ```
 
 This will create a new file, e.g. `./testdata/12D-07M-2023Y-14H-41M-19S/config.yaml`. Please feel free to inspect the file and make any desired configuration changes at this point. After you have deployed the experiment, changes will not go into effect. 
@@ -101,7 +101,7 @@ The `make infra` command provides an alternative which runs all test infra in th
 Terminal 4: Create the AWS resources on localstack
 ```
 cd inabox 
-make resources
+make localstack-resources
 ```
 
 Terminal 4: Deploy the contracts and create test configurations
@@ -122,6 +122,17 @@ Test environment has successfully deployed!
 If there are any deployment errors, look at `inabox/testdata/DATETIME/deploy.log` for a detailed log. 
 
 To view the configurations created for the EigenDA service components, look in `inabox/testdata/DATETIME/envs`
+
+### Login to GHCR
+```
+echo $PAT | docker login ghcr.io -u YOUR_GITHUB_USERNAME --password-stdin
+```
+
+### Docker Compose
+```
+cd inabox/testdata/DATETIME
+docker compose up
+```
 
 ### Run the binaries and send traffic
 

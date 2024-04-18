@@ -32,7 +32,11 @@ chain:
 	go run ./deploy/cmd -localstack-port 4570 chain
 
 localstack:
-	go run ./deploy/cmd -localstack-port 4570 localstack
+	GATEWAY_LISTEN=0.0.0.0:4570 LOCALSTACK_HOST=localhost.localstack.cloud:4570 localstack start
+
+localstack-resources:
+	AWS_URL=http://localhost:4570 ./create-s3-bucket.sh
+	go run ./deploy/cmd -localstack-port 4570 resources
 
 exp: 
 	go run ./deploy/cmd exp
