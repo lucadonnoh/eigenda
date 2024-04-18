@@ -60,3 +60,54 @@ run-e2e-nograph:
 
 clean:
 	rm -rf testdata/*
+
+run-inabox:
+	rm -rf testdata/*
+
+	mkdir -p "testdata/$(dt)"
+	cp ./templates/testconfig-anvil-nochurner.yaml "testdata/$(dt)/config.yaml"
+
+	mkdir -p testdata/$(dt)/logs
+
+	anvil --host 0.0.0.0 > testdata/$(dt)/logs/anvil.log 2>&1 &
+
+	sleep 1
+
+	cd ./thegraph 
+	docker compose up > testdata/$(dt)/logs/graph-node.log 2>&1 &
+	cd ../
+
+	sleep 1
+
+	GATEWAY_LISTEN=0.0.0.0:4570 LOCALSTACK_HOST=localhost.localstack.cloud:4570 localstack start > testdata/$(dt)/logs/localstack.log 2>&1 &
+
+	AWS_URL=http://localhost:4570 ./create-s3-bucket.sh
+	go run ./deploy/cmd -localstack-port 4570 resources
+
+	sleep 1
+
+	make exp
+
+	sleep 5
+
+	./bin.sh start-detached
+
+stop-eigenda-services:
+	./bin.sh stop-detached
+
+
+
+
+
+	
+
+
+
+
+
+	
+
+
+
+	
+

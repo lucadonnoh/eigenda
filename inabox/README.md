@@ -51,6 +51,16 @@ This will create a new file, e.g. `./testdata/12D-07M-2023Y-14H-41M-19S/config.y
 
 ### Provision the test infrastructure, deploy contracts, and configure services
 
+#### New Option One
+```
+make run-inabox
+```
+
+to stop the eigenda services run the following command:
+```
+make stop-eigenda-services
+```
+
 #### Option 1 (simplest): 
 
 Run the following command (from inabox directory)
