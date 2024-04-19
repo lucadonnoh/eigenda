@@ -23,39 +23,29 @@ abstract contract EigenDAServiceManagerStorage is IEigenDAServiceManager {
      * @dev BLOCK_STALE_MEASURE should be greater than the number of blocks till finalization, but not too much greater, as it is the amount of
      * time that nodes can be active after they have deregistered. The larger it is, the farther back stakes can be used, but the longer operators
      * have to serve after they've deregistered.
-     * 
-     * Note that this parameter needs to accommodate the delays which are introduced by the disperser, which are of two types: 
-     *  - FinalizationBlockDelay: when initializing a batch, the disperser will use a ReferenceBlockNumber which is this many
-     *   blocks behind the current block number. This is to ensure that the the operator state associated with the reference block
-     *   will be stable.
-     * - BatchInterval: the batch itself will only be confirmed after the batch interval has passed. 
-     * 
-     * Currently, we use a FinalizationBlockDelay of 75 blocks and a BatchInterval of 50 blocks, 
-     * So using a BLOCK_STALE_MEASURE of 300 should be sufficient to ensure that the batch is not 
-     * stale when it is confirmed.
      */
-    uint32 public constant BLOCK_STALE_MEASURE = 300;
+    uint32 public constant BLOCK_STALE_MEASURE = 150;
 
     /**
      * @notice The quorum adversary threshold percentages stored as an ordered bytes array
      * this is the percentage of the total stake that must be adversarial to consider a blob invalid.
      * The first byte is the threshold for quorum 0, the second byte is the threshold for quorum 1, etc.
      */
-    bytes public constant quorumAdversaryThresholdPercentages = hex"2121";
+    bytes public constant quorumAdversaryThresholdPercentages = hex"21";
 
     /**
      * @notice The quorum confirmation threshold percentages stored as an ordered bytes array
      * this is the percentage of the total stake needed to confirm a blob.
      * The first byte is the threshold for quorum 0, the second byte is the threshold for quorum 1, etc.
      */
-    bytes public constant quorumConfirmationThresholdPercentages = hex"3737";
+    bytes public constant quorumConfirmationThresholdPercentages = hex"37";
 
     /**
      * @notice The quorum numbers required for confirmation stored as an ordered bytes array
      * these quorum numbers have respective canonical thresholds in the
      * quorumConfirmationThresholdPercentages and quorumAdversaryThresholdPercentages above.
      */
-    bytes public constant quorumNumbersRequired = hex"0001";
+    bytes public constant quorumNumbersRequired = hex"00";
 
     /// @notice The current batchId
     uint32 public batchId;
