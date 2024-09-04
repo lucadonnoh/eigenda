@@ -20,6 +20,8 @@ COPY go.sum /app
 
 WORKDIR /app/node
 
+RUN go env -w GOPRIVATE=github.com/Layr-Labs/remote-bls
+
 RUN go build -ldflags="-X 'github.com/Layr-Labs/eigenda/node.SemVer=${SEMVER}' -X 'github.com/Layr-Labs/eigenda/node.GitCommit=${GITCOMMIT}' -X 'github.com/Layr-Labs/eigenda/node.GitDate=${GITDATE}'" -o ./bin/node ./cmd
 
 FROM alpine:3.18
