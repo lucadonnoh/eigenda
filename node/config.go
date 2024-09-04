@@ -74,6 +74,8 @@ type Config struct {
 	UseSecureGrpc                  bool
 	ReachabilityPollIntervalSec    uint64
 	DisableNodeInfoResources       bool
+	BLSRemoteSignerUrl             string
+	BLSPublicKeyHex                string
 
 	EthClientConfig geth.EthClientConfig
 	LoggerConfig    common.LoggerConfig
