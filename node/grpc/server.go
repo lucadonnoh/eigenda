@@ -32,7 +32,7 @@ import (
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 
-	blssignerV1 "github.com/Layr-Labs/remote-bls/pkg/api/v1"
+	blssignerV1 "github.com/Layr-Labs/remote-bls-api/pkg/api/v1"
 )
 
 const localhost = "0.0.0.0"

@@ -39,7 +39,7 @@ import (
 	"github.com/Layr-Labs/eigensdk-go/nodeapi"
 	"github.com/gammazero/workerpool"
 
-	blssignerV1 "github.com/Layr-Labs/remote-bls/pkg/api/v1"
+	blssignerV1 "github.com/Layr-Labs/remote-bls-api/pkg/api/v1"
 )
 
 const (
