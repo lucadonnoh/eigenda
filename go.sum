@@ -10,8 +10,8 @@ github.com/KyleBanks/depth v1.2.1 h1:5h8fQADFrWtarTdtDudMmGsC7GPbOAu6RVB3ffsVFHc
 github.com/KyleBanks/depth v1.2.1/go.mod h1:jzSb9d0L43HxTQfT+oSA1EEp2q+ne2uh6XgeJcm8brE=
 github.com/Layr-Labs/eigensdk-go v0.1.7-0.20240507215523-7e4891d5099a h1:L/UsJFw9M31FD/WgXTPFB0oxbq9Cu4Urea1xWPMQS7Y=
 github.com/Layr-Labs/eigensdk-go v0.1.7-0.20240507215523-7e4891d5099a/go.mod h1:OF9lmS/57MKxS0xpSpX0qHZl0SKkDRpvJIvsGvMN1y8=
-github.com/Layr-Labs/remote-bls v0.0.0-20240904201345-2b83e05d5ccf h1:YT40qUtBdFl7zQCB+wpfQbtSeQ2Fb2cAy9DJNW4Qd1k=
-github.com/Layr-Labs/remote-bls v0.0.0-20240904201345-2b83e05d5ccf/go.mod h1:+eRdeOSX4y+/kAk0YPtKs2uav5BeEZ0OYR5KeWOPmhI=
+github.com/Layr-Labs/remote-bls-api v0.0.0-20240904231913-f76b7066208f h1:2kGSlNDzgJgooZCdpL+GwK7RMa8PczRfX1UfG/2+RfY=
+github.com/Layr-Labs/remote-bls-api v0.0.0-20240904231913-f76b7066208f/go.mod h1:xfF0HW/xNZu4Ed42/5L3QxEkfVs+sR4UOAwrxw4e47I=
 github.com/Microsoft/go-winio v0.6.2 h1:F2VQgta7ecxGYO8k3ZZz3RS8fVIXVxONVUPlNERoyfY=
 github.com/Microsoft/go-winio v0.6.2/go.mod h1:yd8OoFMLzJbo9gZq8j5qaps8bJ9aShtEA8Ipt1oGCvU=
 github.com/Microsoft/hcsshim v0.11.4 h1:68vKo2VN8DE9AdN4tnkWnmdhqdbpUFM8OF3Airm7fz8=
