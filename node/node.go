@@ -168,6 +168,7 @@ func NewNode(reg *prometheus.Registry, config *Config, pubIPProvider pubip.Provi
 		"quorumIDs", fmt.Sprint(config.QuorumIDList), "registerNodeAtStart", config.RegisterNodeAtStart, "pubIPCheckInterval", config.PubIPCheckInterval,
 		"eigenDAServiceManagerAddr", config.EigenDAServiceManagerAddr, "blockStaleMeasure", blockStaleMeasure, "storeDurationBlocks", storeDurationBlocks, "enableGnarkBundleEncoding", config.EnableGnarkBundleEncoding)
 
+	nodeLogger.Info("createing signer client", "url", config.BLSRemoteSignerUrl)
 	conn, err := grpc.NewClient(
 		config.BLSRemoteSignerUrl, grpc.WithTransportCredentials(insecure.NewCredentials()),
 	)

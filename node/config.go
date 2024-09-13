@@ -207,5 +207,7 @@ func NewConfig(ctx *cli.Context) (*Config, error) {
 		ClientIPHeader:                 ctx.GlobalString(flags.ClientIPHeaderFlag.Name),
 		UseSecureGrpc:                  ctx.GlobalBoolT(flags.ChurnerUseSecureGRPC.Name),
 		DisableNodeInfoResources:       ctx.GlobalBool(flags.DisableNodeInfoResourcesFlag.Name),
+		BLSRemoteSignerUrl:             ctx.GlobalString(flags.BLSRemoteSignerUrlFlag.Name),
+		BLSPublicKeyHex:                ctx.GlobalString(flags.BLSPublicKeyHexFlag.Name),
 	}, nil
 }
