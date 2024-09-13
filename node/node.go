@@ -410,7 +410,10 @@ func (n *Node) ProcessBatch(ctx context.Context, header *core.BatchHeader, blobs
 		return nil, fmt.Errorf("failed to sign batch: %w", err)
 	}
 	sig := new(core.Signature)
-	_, err = sig.Deserialize(sigResp.Signature)
+	g, err := sig.Deserialize(sigResp.Signature)
+	finalSig := &core.Signature{
+		G1Point: g,
+	}
 	if err != nil {
 		return nil, fmt.Errorf("failed to deserialize signature: %w", err)
 	}
@@ -419,7 +422,7 @@ func (n *Node) ProcessBatch(ctx context.Context, header *core.BatchHeader, blobs
 	log.Debug("Sign batch succeeded", "pubkey", n.Config.BLSPublicKeyHex, "duration", time.Since(stageTimer))
 
 	log.Debug("Exiting process batch", "duration", time.Since(start))
-	return sig, nil
+	return finalSig, nil
 }
 
 // ProcessBlobs validates the blobs are correct, stores data into the node's Store, and then returns a signature for each blob.
@@ -627,11 +630,14 @@ func (n *Node) SignBlobs(blobs []*core.BlobMessage, referenceBlockNumber uint) (
 			return nil, fmt.Errorf("failed to sign batch: %w", err)
 		}
 		sig := new(core.Signature)
-		_, err = sig.Deserialize(sigResp.Signature)
+		g, err := sig.Deserialize(sigResp.Signature)
 		if err != nil {
 			return nil, fmt.Errorf("failed to deserialize signature: %w", err)
 		}
-		signatures[i] = sig
+		finalSig := &core.Signature{
+			G1Point: g,
+		}
+		signatures[i] = finalSig
 	}
 
 	n.Logger.Debug("SignBlobs completed", "duration", time.Since(start))
