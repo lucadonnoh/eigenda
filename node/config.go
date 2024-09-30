@@ -3,6 +3,7 @@ package node
 import (
 	"errors"
 	"fmt"
+	"github.com/Layr-Labs/eigensdk-go/crypto/bls"
 	"os"
 	"strconv"
 	"strings"
@@ -148,11 +149,11 @@ func NewConfig(ctx *cli.Context) (*Config, error) {
 	// Decrypt BLS key
 	var privateBls string
 	if !testMode {
-		//kp, err := bls.ReadPrivateKeyFromFile(ctx.GlobalString(flags.BlsKeyFileFlag.Name), ctx.GlobalString(flags.BlsKeyPasswordFlag.Name))
-		//if err != nil {
-		//	return nil, fmt.Errorf("could not read or decrypt the BLS private key: %v", err)
-		//}
-		//privateBls = kp.PrivKey.String()
+		kp, err := bls.ReadPrivateKeyFromFile(ctx.GlobalString(flags.BlsKeyFileFlag.Name), "")
+		if err != nil {
+			return nil, fmt.Errorf("could not read or decrypt the BLS private key: %v", err)
+		}
+		privateBls = kp.PrivKey.String()
 	} else {
 		privateBls = ctx.GlobalString(flags.TestPrivateBlsFlag.Name)
 	}
