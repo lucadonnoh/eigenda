@@ -6,7 +6,7 @@ toolchain go1.21.1
 
 require (
 	github.com/Layr-Labs/eigensdk-go v0.1.7-0.20240507215523-7e4891d5099a
-	github.com/Layr-Labs/remote-bls-api v0.0.0-20240904231913-f76b7066208f
+	github.com/Layr-Labs/remote-bls-api v0.0.0-20240927211926-67917adc90bb
 	github.com/aws/aws-sdk-go-v2 v1.26.1
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.11
 	github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue v1.13.12

@@ -376,6 +376,7 @@ func (s *Server) AttestBatch(ctx context.Context, in *pb.AttestBatchRequest) (*p
 		ctx,
 		&blssignerV1.SignGenericRequest{
 			PublicKey: s.node.Config.BLSPublicKeyHex,
+			Password:  s.node.Config.BLSKeyPassword,
 			Data:      batchHeaderHash[:],
 		},
 	)

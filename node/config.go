@@ -76,6 +76,7 @@ type Config struct {
 	DisableNodeInfoResources       bool
 	BLSRemoteSignerUrl             string
 	BLSPublicKeyHex                string
+	BLSKeyPassword                 string
 
 	EthClientConfig geth.EthClientConfig
 	LoggerConfig    common.LoggerConfig
@@ -209,5 +210,6 @@ func NewConfig(ctx *cli.Context) (*Config, error) {
 		DisableNodeInfoResources:       ctx.GlobalBool(flags.DisableNodeInfoResourcesFlag.Name),
 		BLSRemoteSignerUrl:             ctx.GlobalString(flags.BLSRemoteSignerUrlFlag.Name),
 		BLSPublicKeyHex:                ctx.GlobalString(flags.BLSPublicKeyHexFlag.Name),
+		BLSKeyPassword:                 ctx.GlobalString(flags.BLSKeyPasswordFlag.Name),
 	}, nil
 }

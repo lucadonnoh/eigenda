@@ -403,6 +403,7 @@ func (n *Node) ProcessBatch(ctx context.Context, header *core.BatchHeader, blobs
 		ctx,
 		&blssignerV1.SignGenericRequest{
 			PublicKey: n.Config.BLSPublicKeyHex,
+			Password:  n.Config.BLSKeyPassword,
 			Data:      batchHeaderHash[:],
 		},
 	)
@@ -623,6 +624,7 @@ func (n *Node) SignBlobs(blobs []*core.BlobMessage, referenceBlockNumber uint) (
 			context.Background(),
 			&blssignerV1.SignGenericRequest{
 				PublicKey: n.Config.BLSPublicKeyHex,
+				Password:  n.Config.BLSKeyPassword,
 				Data:      batchHeaderHash[:],
 			},
 		)
