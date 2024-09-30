@@ -286,13 +286,6 @@ var (
 		Required: false,
 		EnvVar:   common.PrefixEnvVar(EnvVarPrefix, "BLS_PUBLIC_KEY_HEX"),
 	}
-
-	BLSKeyPasswordFlag = cli.StringFlag{
-		Name:     common.PrefixFlag(FlagPrefix, "bls-key-password"),
-		Usage:    "The password to decrypt BLS key",
-		Required: false,
-		EnvVar:   common.PrefixEnvVar(EnvVarPrefix, "BLS_KEY_PASSWORD"),
-	}
 )
 
 var requiredFlags = []cli.Flag{
@@ -337,7 +330,6 @@ var optionalFlags = []cli.Flag{
 	EnableGnarkBundleEncodingFlag,
 	BLSRemoteSignerUrlFlag,
 	BLSPublicKeyHexFlag,
-	BLSKeyPasswordFlag,
 }
 
 func init() {

@@ -13,7 +13,6 @@ import (
 	"github.com/Layr-Labs/eigenda/core"
 	"github.com/Layr-Labs/eigenda/encoding/kzg"
 	"github.com/Layr-Labs/eigenda/node/flags"
-	"github.com/Layr-Labs/eigensdk-go/crypto/bls"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/urfave/cli"
@@ -149,11 +148,11 @@ func NewConfig(ctx *cli.Context) (*Config, error) {
 	// Decrypt BLS key
 	var privateBls string
 	if !testMode {
-		kp, err := bls.ReadPrivateKeyFromFile(ctx.GlobalString(flags.BlsKeyFileFlag.Name), ctx.GlobalString(flags.BlsKeyPasswordFlag.Name))
-		if err != nil {
-			return nil, fmt.Errorf("could not read or decrypt the BLS private key: %v", err)
-		}
-		privateBls = kp.PrivKey.String()
+		//kp, err := bls.ReadPrivateKeyFromFile(ctx.GlobalString(flags.BlsKeyFileFlag.Name), ctx.GlobalString(flags.BlsKeyPasswordFlag.Name))
+		//if err != nil {
+		//	return nil, fmt.Errorf("could not read or decrypt the BLS private key: %v", err)
+		//}
+		//privateBls = kp.PrivKey.String()
 	} else {
 		privateBls = ctx.GlobalString(flags.TestPrivateBlsFlag.Name)
 	}
@@ -210,6 +209,6 @@ func NewConfig(ctx *cli.Context) (*Config, error) {
 		DisableNodeInfoResources:       ctx.GlobalBool(flags.DisableNodeInfoResourcesFlag.Name),
 		BLSRemoteSignerUrl:             ctx.GlobalString(flags.BLSRemoteSignerUrlFlag.Name),
 		BLSPublicKeyHex:                ctx.GlobalString(flags.BLSPublicKeyHexFlag.Name),
-		BLSKeyPassword:                 ctx.GlobalString(flags.BLSKeyPasswordFlag.Name),
+		BLSKeyPassword:                 ctx.GlobalString(flags.BlsKeyPasswordFlag.Name),
 	}, nil
 }
