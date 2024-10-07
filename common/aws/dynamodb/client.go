@@ -38,7 +38,7 @@ var (
 
 type Item = map[string]types.AttributeValue
 type Key = map[string]types.AttributeValue
-type ExpresseionValues = map[string]types.AttributeValue
+type ExpresseionValues = map[string]types.AttributeValue // is this a typo? ExpressionValues?
 
 type QueryResult struct {
 	Items            []Item
@@ -127,13 +127,13 @@ func (c *Client) PutItems(ctx context.Context, tableName string, items []Item) (
 }
 
 func (c *Client) UpdateItem(ctx context.Context, tableName string, key Key, item Item) (Item, error) {
-	err := ensureKeyAttributes(key, item)
-	if err != nil {
-		return nil, err
-	}
-
 	update := expression.UpdateBuilder{}
 	for itemKey, itemValue := range item {
+		//TODO: update this along with the existing test on updating BlobMetadata numRetries
+		if _, ok := key[itemKey]; ok {
+			// Cannot update the key
+			continue
+		}
 		update = update.Set(expression.Name(itemKey), expression.Value(itemValue))
 	}
 
